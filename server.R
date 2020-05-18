@@ -27,7 +27,7 @@ function(input, output) {
   })
   output$cidade_selector <- renderUI({
     cidades <- db[which(db$CENSO==input$ano & db$ESTADO==input$estado),]$MUNICIPIO
-    selectInput("cidade","Cidade:", choices=as.vector(cidades))
+    selectInput("cidade","Cidade:", choices=sort(as.vector(cidades)))
   })
   output$table <- renderTable( db[which(db$CENSO==input$ano & db$ESTADO==input$estado & db$MUNICIPIO==input$cidade),], rownames=TRUE )
 })
